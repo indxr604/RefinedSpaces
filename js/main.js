@@ -5,8 +5,6 @@ const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
 
-
-
 (function ($) {
     "use strict";
     
@@ -206,7 +204,7 @@ const createChatLi = (message, className) => {
 const generateResponse = async (chatElement) => {
   const messageElement = chatElement.querySelector("p");
 
-     if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
+  if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
     messageElement.textContent = `📢 Company Info:\nName: ${companyData.name}\n📧 Email: ${companyData.email}\n📞 Phone: ${companyData.phone}\n📍 Address: ${companyData.address}\n🌐 Website: ${companyData.website}`;
     return;
 }
@@ -299,9 +297,8 @@ const handleChat = () => {
     const incomingChatLi = createChatLi("Thinking...", "incoming");
     chatbox.appendChild(incomingChatLi);
     chatbox.scrollTo(0, chatbox.scrollHeight);
-    generateResponse(incomingChatLi);
 
-       if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
+    if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
         incomingChatLi.querySelector("p").textContent = `📢 Company Info:\nName:${companyData.name}\n📧 Email: ${companyData.email}\n📞 Phone: ${companyData.phone}\n📍 Address: ${companyData.address}\n🌐 Website: ${companyData.website}`;
     } 
     
