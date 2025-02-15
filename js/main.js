@@ -128,6 +128,63 @@ const sendChatBtn = document.querySelector(".chat-input span");
     
 })(jQuery);
 
+const companyData = {
+    name: "Refined Spaces",
+    email: "refinedspaces65@gmail.com",
+    phone: "7986610238",
+    address: "123 Model Town, Ludhiana",
+    website: "https://refinedspaces.com"
+};
+
+const ceoInfo = {
+    name: "Inderjeet Singh",
+    title: "Founder & CEO",
+    bio: "Inder is a visionary leader with over 1.5 years of experience in interior design, creating unique and inspiring spaces for homes and businesses worldwide.",
+    email: "inderjeet221777@gmail.com",
+    linkedin: "https://linkedin.com/in/inder"
+};
+
+const managerInfo = {
+    name: "Harman Chopra",
+    title: "Project Manager",
+    bio: "Harman is a project manager with over 1 year of experience in interior design, managing projects from concept to completion.",
+    email: "harman123@gmail.com",
+    linkedin: "https://linkedin.com/in/harman"
+};
+
+const assistantInfo = {
+    name: "Gagandeep Singh",
+    title: "Assistant Manager",
+    bio: "Gagan is an assistant manager with over 1 year of experience in interior design, assisting in project management and client communication.",
+    email: "gagandeep456@gmail.com",
+    linkedin: "https://linkedin.com/in/gagan"
+}
+
+const companyPurpose = `✨ Our Purpose at Refined Spaces ✨  
+We specialize in transforming spaces into beautiful, functional, and inspiring environments!  
+🏡 Enhancing Aesthetic Appeal  
+📐 Optimizing Functionality  
+🎨 Providing Custom Solutions  
+🏠 Increasing Property Value  
+🌱 Sustainable & Smart Designs  
+Let us bring your vision to life!🚀
+`;
+
+
+const services = `
+🔹 Full-Service Interior Design  
+🏡 Residential Interior Design  
+🏢 Commercial Interior Design  
+📐 Space Planning & Layout Optimization  
+🛋️ Furniture Selection & Customization  
+🎨 Color Consultation & Material Selection  
+🖥️ 3D Visualization & Rendering  
+🔨 Renovation & Remodeling  
+💡 Smart Home & Lighting Design  
+🌱 Sustainable & Eco-Friendly Design  
+🏠 Staging & Styling  
+`; // Services offered by the company
+
 
 let userMessage = null; // Variable to store user's message
 const inputInitHeight = chatInput.scrollHeight;
@@ -148,6 +205,51 @@ const createChatLi = (message, className) => {
 
 const generateResponse = async (chatElement) => {
   const messageElement = chatElement.querySelector("p");
+
+     if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
+    messageElement.textContent = `📢 Company Info:\nName: ${companyData.name}\n📧 Email: ${companyData.email}\n📞 Phone: ${companyData.phone}\n📍 Address: ${companyData.address}\n🌐 Website: ${companyData.website}`;
+    return;
+}
+
+if (userMessage.toLowerCase().includes("ceo") || userMessage.toLowerCase().includes("founder")) {
+    messageElement.textContent = `👤 Meet Our CEO  
+🔹 Name: ${ceoInfo.name}  
+🏢 Title: ${ceoInfo.title}  
+📖 Bio: ${ceoInfo.bio}  
+✉️ Email: ${ceoInfo.email}  
+🔗 LinkedIn: ${ceoInfo.linkedin}`;
+    return;
+}
+
+if (userMessage.toLowerCase().includes("manager") || userMessage.toLowerCase().includes("project manager")) {
+    messageElement.textContent = `👤 Meet Our Project Manager 
+🔹 Name: ${managerInfo.name}
+🏢 Title: ${managerInfo.title}
+📖 Bio: ${managerInfo.bio}
+✉️ Email: ${managerInfo.email}
+🔗 LinkedIn: ${managerInfo.linkedin}`;
+    return;
+    }
+
+if (userMessage.toLowerCase().includes("assistant") || userMessage.toLowerCase().includes("assistant manager")) {
+    messageElement.textContent = `👤 Meet Our Assistant Manager
+🔹 Name: ${assistantInfo.name}
+🏢 Title: ${assistantInfo.title}
+📖 Bio: ${assistantInfo.bio}
+✉️ Email: ${assistantInfo.email} 
+🔗 LinkedIn: ${assistantInfo.linkedin}`;
+    return;
+}   
+
+if (userMessage.toLowerCase().includes("services") || userMessage.toLowerCase().includes("service")) {
+    messageElement.textContent = `📢 Services Offered:\n${services}`;
+    return;
+}
+
+if (userMessage.toLowerCase().includes("purpose") || userMessage.toLowerCase().includes("mission")) {
+    messageElement.textContent = companyPurpose;
+    return;
+}
 
   // Define the properties and message for the API request
   const requestOptions = {
@@ -198,6 +300,47 @@ const handleChat = () => {
     chatbox.appendChild(incomingChatLi);
     chatbox.scrollTo(0, chatbox.scrollHeight);
     generateResponse(incomingChatLi);
+
+       if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
+        incomingChatLi.querySelector("p").textContent = `📢 Company Info:\nName:${companyData.name}\n📧 Email: ${companyData.email}\n📞 Phone: ${companyData.phone}\n📍 Address: ${companyData.address}\n🌐 Website: ${companyData.website}`;
+    } 
+    
+    if (userMessage.toLowerCase().includes("ceo") || userMessage.toLowerCase().includes("founder")) {
+        incomingChatLi.querySelector("p").textContent = `👤 Meet Our CEO  
+        🔹 Name: ${ceoInfo.name}  
+        🏢 Title: ${ceoInfo.title}  
+        📖 Bio: ${ceoInfo.bio}  
+        ✉️ Email: ${ceoInfo.email}  
+        🔗 LinkedIn: ${ceoInfo.linkedin}`;
+    }
+
+    if (userMessage.toLowerCase().includes("manager") || userMessage.toLowerCase().includes("project manager")) {
+        incomingChatLi.querySelector("p").textContent = `👤 Meet Our Project Manager
+        🔹 Name: ${managerInfo.name}
+        🏢 Title: ${managerInfo.title}
+        📖 Bio: ${managerInfo.bio}
+        ✉️ Email: ${managerInfo.email}
+        🔗 LinkedIn: ${managerInfo.linkedin}`;
+    }
+
+    if (userMessage.toLowerCase().includes("assistant") || userMessage.toLowerCase().includes("assistant manager")) {
+        incomingChatLi.querySelector("p").textContent = `👤 Meet Our Assistant Manager
+        🔹 Name: ${assistantInfo.name}
+        🏢 Title: ${assistantInfo.title}
+        📖 Bio: ${assistantInfo.bio}
+        ✉️ Email: ${assistantInfo.email}
+        🔗 LinkedIn: ${assistantInfo.linkedin}`;
+    }
+
+    if (userMessage.toLowerCase().includes("services") || userMessage.toLowerCase().includes("service")) {
+        incomingChatLi.querySelector("p").textContent = `📢 Services Offered:\n${services}`;
+    }
+    if (userMessage.toLowerCase().includes("purpose") || userMessage.toLowerCase().includes("mission")) {
+        incomingChatLi.querySelector("p").textContent = companyPurpose;
+    }
+    else {
+        generateResponse(incomingChatLi);
+    }
   }, 600);
 };
 
