@@ -183,7 +183,8 @@ const services = `
 🏠 Staging & Styling  
 `; // Services offered by the company
 
-
+let collectingAppointment = false; // Flag to track if we are collecting appointment details
+let appointments = [];
 let userMessage = null; // Variable to store user's message
 const inputInitHeight = chatInput.scrollHeight;
 
@@ -203,6 +204,19 @@ const createChatLi = (message, className) => {
 
 const generateResponse = async (chatElement) => {
   const messageElement = chatElement.querySelector("p");
+
+      if (
+    userMessage.toLowerCase().includes("book an appointment") ||
+    userMessage.toLowerCase().includes("appointment")
+  ) {
+    messageElement.textContent = `📅 Great!  
+    You can make an appointment by contacting us at:
+    📧 Email: ${companyData.email}
+    Or
+     at the contact section of our website.`;
+    collectingAppointment = true; // Now expecting user details
+    return;
+  }
 
   if (userMessage.toLowerCase().includes("contact") || userMessage.toLowerCase().includes("company")) {
     messageElement.textContent = `📢 Company Info:\nName: ${companyData.name}\n📧 Email: ${companyData.email}\n📞 Phone: ${companyData.phone}\n📍 Address: ${companyData.address}\n🌐 Website: ${companyData.website}`;
