@@ -373,3 +373,35 @@ chatInput.addEventListener("keydown", (e) => {
 sendChatBtn.addEventListener("click", handleChat);
 closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+
+const emailInput = document.getElementById("email");
+const form = document.getElementById("contact-form");
+const errorDiv = document.getElementById("email-error");
+
+function validateEmailDomain(email) {
+  return email.endsWith("@gmail.com") || email.endsWith("@yahoo.com");
+}
+
+emailInput.addEventListener("input", () => {
+  const value = emailInput.value.toLowerCase();
+  const isValid = validateEmailDomain(value);
+
+  if (!isValid) {
+    emailInput.setCustomValidity("Invalid domain");
+    errorDiv.textContent =
+      "Please enter a valid email domain (@gmail.com or @yahoo.com)";
+    errorDiv.style.display = "block";
+  } else {
+    emailInput.setCustomValidity("");
+    errorDiv.textContent = "";
+    errorDiv.style.display = "none";
+  }
+});
+
+form.addEventListener("submit", function (e) {
+  if (!emailInput.checkValidity()) {
+    e.preventDefault();
+  }
+});
+
+
